@@ -27,12 +27,22 @@ namespace DataBase_Marcin
         {
             InitializeComponent();
 
-            Navigacja.Navigate(strona2);
+            Navigacja.Navigate(strona1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Navigacja.Navigate(strona1);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Navigacja.Navigate(strona2);
         }
     }
 }

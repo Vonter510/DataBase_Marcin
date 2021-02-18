@@ -8,13 +8,19 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FF19B900" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
+    <Grid Background="#FF406FD3">
+        <DataGrid x:Name="WidokKlient" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="WidokPracownik_SelectionChanged"/>
+        <TextBox x:Name="textImie" HorizontalAlignment="Left" Height="23" Margin="179,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Imie:" HorizontalAlignment="Left" Margin="20,207,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textNazwisko" HorizontalAlignment="Left" Height="23" Margin="179,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="20,243,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textPesel" HorizontalAlignment="Left" Height="23" Margin="179,282,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="PESEL:" HorizontalAlignment="Left" Margin="20,274,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <Label Content="Data Urodzenia:" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <DatePicker x:Name="tData" HorizontalAlignment="Left" Margin="179,317,0,0" VerticalAlignment="Top" Width="146" IsTodayHighlighted="True" FontStretch="Condensed"/>
+        <Button x:Name="pDodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="43,393,0,0" VerticalAlignment="Top" Width="99" FontSize="16" FontFamily="Segoe UI Black" Height="38" Click="pDodaj_Click"/>
+        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="694,404,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="pOdswiez_Click"/>
+        <Label Content="Numer Komórkowy:" HorizontalAlignment="Left" Margin="19,347,0,0" VerticalAlignment="Top" FontSize="15" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textkom" HorizontalAlignment="Left" Height="23" Margin="179,354,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
     </Grid>
 </Page>
