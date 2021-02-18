@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="WPFap" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="WidokPracownik" HorizontalAlignment="Left" Height="162" Margin="10,10,0,0" VerticalAlignment="Top" Width="772"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Height="33" Width="52"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,188,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="68"/>
+
     </Grid>
 </Window>

@@ -22,6 +22,28 @@ namespace DataBase_Marcin
         public WPFap()
         {
             InitializeComponent();
+
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+
+            var dosc = from d in db.pracownicy
+
+                       select new
+                       {
+                           ID = d.ID_pracownika,
+                           Imie = d.Imie,
+                           Nazwisko = d.Nazwisko,
+                           Data_Zatrudnienia = d.Data_przyjecia
+                       };
+
+            foreach (var item in dosc)
+            {
+                Console.WriteLine(item.ID);
+                Console.WriteLine(item.Imie);
+                Console.WriteLine(item.Nazwisko);
+                Console.WriteLine(item.Data_Zatrudnienia);
+            }
+
+            this.WidokPracownik.ItemsSource = dosc.ToList();
         }
     }
 }
