@@ -51,6 +51,7 @@ namespace DataBase_Marcin
 
         private void pDodaj_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Pomyślnie dodano");
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
             pracownicy pracownicyObiekt = new pracownicy()
@@ -71,26 +72,32 @@ namespace DataBase_Marcin
 
             this.WidokPracownik.ItemsSource = db.pracownicy.ToList();
         }
+        private int zmienneID = 0;
+        private void pUsun_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult msbOdp = MessageBox.Show("Czy napewno chcesz usunąć","Usunięto", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+
+            if (msbOdp == MessageBoxResult.Yes)
+            {
+                WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+
+                var z = from d in db.pracownicy
+                        where d.ID_pracownika == this.zmienneID
+                        select d;
+
+                pracownicy obj = z.SingleOrDefault();
+
+                if (obj != null)
+                {
+                    db.pracownicy.Remove(obj);
+                    db.SaveChanges();
+                }
+            }
+        }
 
         private void WidokPracownik_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine(this.WidokPracownik.SelectedItems);
-        }
 
-        private void pModyfikuj_Click(object sender, RoutedEventArgs e)
-        {
-            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
-
-            var z = from d in db.pracownicy
-                    where d.ID_pracownika == 1
-                    select d;
-
-            foreach (var item in z)
-            {
-                MessageBox.Show(item.Imie);
-            }
-
-            db.SaveChanges();
         }
     }
 }

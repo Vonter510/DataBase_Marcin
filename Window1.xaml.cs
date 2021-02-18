@@ -23,6 +23,8 @@ namespace DataBase_Marcin
     {
         private Page1 strona1 = new Page1();
         private Page2 strona2 = new Page2();
+        private Page3 strona3 = new Page3();
+        private Page4 strona4 = new Page4();
         public Window1()
         {
             InitializeComponent();
@@ -30,19 +32,24 @@ namespace DataBase_Marcin
             Navigacja.Navigate(strona1);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Pracownicy(object sender, RoutedEventArgs e)
         {
             Navigacja.Navigate(strona1);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Samochody(object sender, RoutedEventArgs e)
         {
-
+            Navigacja.Navigate(strona3);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Klienci(object sender, RoutedEventArgs e)
         {
             Navigacja.Navigate(strona2);
+        }
+
+        private void Button_Wypozyczenia(object sender, RoutedEventArgs e)
+        {
+            Navigacja.Navigate(strona4);
         }
     }
 }

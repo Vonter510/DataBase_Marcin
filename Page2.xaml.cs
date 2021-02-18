@@ -57,6 +57,7 @@ namespace DataBase_Marcin
         }
         private void pDodaj_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Pomyślnie dodano");
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
             klienci klientObiekt = new klienci()
@@ -76,7 +77,7 @@ namespace DataBase_Marcin
         {
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
-            this.WidokKlient.ItemsSource = db.pracownicy.ToList();
+            this.WidokKlient.ItemsSource = db.klienci.ToList();
         }
     }
 }

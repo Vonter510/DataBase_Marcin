@@ -27,8 +27,9 @@
                 </TransformGroup>
             </Frame.RenderTransform>
         </Frame>
-        <Button Content="Pracownicy" HorizontalAlignment="Left" Margin="24,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Click" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
-        <Button Content="Samochody" HorizontalAlignment="Left" Margin="24,121,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Click_1" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
-        <Button Content="Klienci" HorizontalAlignment="Left" Margin="24,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Click_2" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
+        <Button Content="Pracownicy" HorizontalAlignment="Left" Margin="24,84,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Pracownicy" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
+        <Button Content="Samochody" HorizontalAlignment="Left" Margin="24,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Samochody" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
+        <Button Content="Klienci" HorizontalAlignment="Left" Margin="24,99,0,0" Grid.Row="2" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Klienci" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
+        <Button Content="Wypozyczenia" HorizontalAlignment="Left" Margin="24,188,0,0" Grid.Row="2" VerticalAlignment="Top" Width="122" Height="46" Click="Button_Wypozyczenia" FontSize="16" Background="#FF8D7217" FontFamily="Segoe UI Black"/>
     </Grid>
 </Window>

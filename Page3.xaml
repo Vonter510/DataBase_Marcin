@@ -1,0 +1,29 @@
+﻿<Page x:Class="DataBase_Marcin.Page3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DataBase_Marcin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page3">
+
+    <Grid Background="#FF406FD3">
+        <DataGrid x:Name="WidokSamochodu" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772"/>
+        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="694,404,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="pOdswiez_Click"/>
+        <TextBox x:Name="textMarka" HorizontalAlignment="Left" Height="23" Margin="179,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Marka:" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textModel" HorizontalAlignment="Left" Height="23" Margin="179,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="20,248,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textPrzebieg" HorizontalAlignment="Left" Height="23" Margin="179,282,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Przebieg:" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <CheckBox x:Name="textsprawny" Content="Sprawny" HorizontalAlignment="Left" Margin="196,409,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI Black"/>
+        <CheckBox x:Name="textdostepny" Content="Dostępny" HorizontalAlignment="Left" Margin="196,381,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI Black"/>
+        <Label Content="Numer Rejestracyjny:" HorizontalAlignment="Left" Margin="20,305,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textNumerR" HorizontalAlignment="Left" Height="23" Margin="179,310,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="VIN:" HorizontalAlignment="Left" Margin="20,331,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textVin" HorizontalAlignment="Left" Height="23" Margin="179,339,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Button x:Name="pDodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="43,393,0,0" VerticalAlignment="Top" Width="99" FontSize="16" FontFamily="Segoe UI Black" Height="38" Click="pDodaj_Click"/>
+
+    </Grid>
+</Page>
