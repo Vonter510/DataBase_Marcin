@@ -7,9 +7,18 @@
         mc:Ignorable="d"
         Title="WPFap" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="WidokPracownik" HorizontalAlignment="Left" Height="162" Margin="10,10,0,0" VerticalAlignment="Top" Width="772"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Height="33" Width="52"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,188,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="20" Width="68"/>
+        <DataGrid x:Name="WidokPracownik" HorizontalAlignment="Left" Height="162" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="WidokPracownik_SelectionChanged"/>
+        <TextBox x:Name="textImie" HorizontalAlignment="Left" Height="23" Margin="169,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Imie:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textNazwisko" HorizontalAlignment="Left" Height="23" Margin="169,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="10,231,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <TextBox x:Name="textPesel" HorizontalAlignment="Left" Height="23" Margin="169,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
+        <Label Content="PESEL:" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <Label Content="DataZatrudninia:" HorizontalAlignment="Left" Margin="10,298,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
+        <Button x:Name="pDodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="23,351,0,0" VerticalAlignment="Top" Width="99" FontSize="16" FontFamily="Segoe UI Black" Height="38" Click="pDodaj_Click"/>
+        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="697,184,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="podswiez_Click"/>
+        <Button x:Name="pModyfikuj"  Content="Zmień" HorizontalAlignment="Left" Margin="591,184,0,0" VerticalAlignment="Top" Width="91" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="pModyfikuj_Click"/>
+        <DatePicker x:Name="tData" HorizontalAlignment="Left" Margin="169,305,0,0" VerticalAlignment="Top" Width="146" IsTodayHighlighted="True" FontStretch="Condensed" DisplayDateEnd=""/>
 
     </Grid>
 </Window>
