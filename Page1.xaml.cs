@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DataBase_Marcin
 {
     /// <summary>
-    /// Logika interakcji dla klasy WPFap.xaml
+    /// Logika interakcji dla klasy Page1.xaml
     /// </summary>
-    public partial class WPFap : Window
+    public partial class Page1 : Page
     {
-        public WPFap()
+        public Page1()
         {
             InitializeComponent();
 
