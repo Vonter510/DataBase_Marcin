@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WypozyczalniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adresy">
+          <Key>
+            <PropertyRef Name="ID_adresu" />
+          </Key>
+          <Property Name="ID_adresu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Miasto" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Ulica" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nr_domu" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Kod_pocztowy" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="ID_klienta" Type="int" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="ID_klienta" />
+          </Key>
+          <Property Name="ID_klienta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Data_urodzenia" Type="date" Nullable="false" />
+          <Property Name="Nr_komorkowy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pesel" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="pracownicy">
+          <Key>
+            <PropertyRef Name="ID_pracownika" />
+          </Key>
+          <Property Name="ID_pracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nazwisko" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Data_przyjecia" Type="date" Nullable="false" />
+          <Property Name="Pesel" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="samochody">
+          <Key>
+            <PropertyRef Name="ID_samochodu" />
+          </Key>
+          <Property Name="ID_samochodu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Model" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Czy_sprawny" Type="bit" Nullable="false" />
+          <Property Name="Czy_dostepny" Type="bit" Nullable="false" />
+          <Property Name="Nr_rejestracyjny" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Przebieg" Type="int" Nullable="false" />
+          <Property Name="VIN" Type="char" MaxLength="17" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wypozyczenia">
+          <Key>
+            <PropertyRef Name="ID_wypozyczenia" />
+          </Key>
+          <Property Name="ID_wypozyczenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_wypozyczenia" Type="date" Nullable="false" />
+          <Property Name="Data_zwrotu" Type="date" Nullable="false" />
+          <Property Name="ID_pracownika" Type="int" Nullable="false" />
+          <Property Name="ID_klienta" Type="int" Nullable="false" />
+          <Property Name="ID_samochodu" Type="int" Nullable="false" />
+          <Property Name="Stan_licznika_przed" Type="int" Nullable="false" />
+          <Property Name="Stan_licznika_po" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="adres_klienci">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="0..1" />
+          <End Role="adresy" Type="Self.adresy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="ID_klienta" />
+            </Principal>
+            <Dependent Role="adresy">
+              <PropertyRef Name="ID_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="klienci_wypozyczenia">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="ID_klienta" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pracownicy_wypozyczenia">
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pracownicy">
+              <PropertyRef Name="ID_pracownika" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_pracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="samochody_wypozyczenia">
+          <End Role="samochody" Type="Self.samochody" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="samochody">
+              <PropertyRef Name="ID_samochodu" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_samochodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaModelStoreContainer">
+          <EntitySet Name="adresy" EntityType="Self.adresy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pracownicy" EntityType="Self.pracownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="samochody" EntityType="Self.samochody" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wypozyczenia" EntityType="Self.wypozyczenia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="adres_klienci" Association="Self.adres_klienci">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="adresy" EntitySet="adresy" />
+          </AssociationSet>
+          <AssociationSet Name="klienci_wypozyczenia" Association="Self.klienci_wypozyczenia">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+          <AssociationSet Name="pracownicy_wypozyczenia" Association="Self.pracownicy_wypozyczenia">
+            <End Role="pracownicy" EntitySet="pracownicy" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+          <AssociationSet Name="samochody_wypozyczenia" Association="Self.samochody_wypozyczenia">
+            <End Role="samochody" EntitySet="samochody" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WypozyczalniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adresy">
+          <Key>
+            <PropertyRef Name="ID_adresu" />
+          </Key>
+          <Property Name="ID_adresu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Miasto" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nr_domu" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Kod_pocztowy" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_klienta" Type="Int32" />
+          <NavigationProperty Name="klienci" Relationship="Self.adres_klienci" FromRole="adresy" ToRole="klienci" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="ID_klienta" />
+          </Key>
+          <Property Name="ID_klienta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data_urodzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Nr_komorkowy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adresy" Relationship="Self.adres_klienci" FromRole="klienci" ToRole="adresy" />
+          <NavigationProperty Name="wypozyczenia" Relationship="Self.klienci_wypozyczenia" FromRole="klienci" ToRole="wypozyczenia" />
+        </EntityType>
+        <EntityType Name="pracownicy">
+          <Key>
+            <PropertyRef Name="ID_pracownika" />
+          </Key>
+          <Property Name="ID_pracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Data_przyjecia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wypozyczenia" Relationship="Self.pracownicy_wypozyczenia" FromRole="pracownicy" ToRole="wypozyczenia" />
+        </EntityType>
+        <EntityType Name="samochody">
+          <Key>
+            <PropertyRef Name="ID_samochodu" />
+          </Key>
+          <Property Name="ID_samochodu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Czy_sprawny" Type="Boolean" Nullable="false" />
+          <Property Name="Czy_dostepny" Type="Boolean" Nullable="false" />
+          <Property Name="Nr_rejestracyjny" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Przebieg" Type="Int32" Nullable="false" />
+          <Property Name="VIN" Type="String" MaxLength="17" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="wypozyczenia" Relationship="Self.samochody_wypozyczenia" FromRole="samochody" ToRole="wypozyczenia" />
+        </EntityType>
+        <EntityType Name="wypozyczenia">
+          <Key>
+            <PropertyRef Name="ID_wypozyczenia" />
+          </Key>
+          <Property Name="ID_wypozyczenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_wypozyczenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_zwrotu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_pracownika" Type="Int32" Nullable="false" />
+          <Property Name="ID_klienta" Type="Int32" Nullable="false" />
+          <Property Name="ID_samochodu" Type="Int32" Nullable="false" />
+          <Property Name="Stan_licznika_przed" Type="Int32" Nullable="false" />
+          <Property Name="Stan_licznika_po" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="klienci" Relationship="Self.klienci_wypozyczenia" FromRole="wypozyczenia" ToRole="klienci" />
+          <NavigationProperty Name="pracownicy" Relationship="Self.pracownicy_wypozyczenia" FromRole="wypozyczenia" ToRole="pracownicy" />
+          <NavigationProperty Name="samochody" Relationship="Self.samochody_wypozyczenia" FromRole="wypozyczenia" ToRole="samochody" />
+        </EntityType>
+        <Association Name="adres_klienci">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="0..1" />
+          <End Role="adresy" Type="Self.adresy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="ID_klienta" />
+            </Principal>
+            <Dependent Role="adresy">
+              <PropertyRef Name="ID_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="klienci_wypozyczenia">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="ID_klienta" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_klienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pracownicy_wypozyczenia">
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pracownicy">
+              <PropertyRef Name="ID_pracownika" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_pracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="samochody_wypozyczenia">
+          <End Role="samochody" Type="Self.samochody" Multiplicity="1" />
+          <End Role="wypozyczenia" Type="Self.wypozyczenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="samochody">
+              <PropertyRef Name="ID_samochodu" />
+            </Principal>
+            <Dependent Role="wypozyczenia">
+              <PropertyRef Name="ID_samochodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WypozyczalniaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adresy" EntityType="Self.adresy" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" />
+          <EntitySet Name="pracownicy" EntityType="Self.pracownicy" />
+          <EntitySet Name="samochody" EntityType="Self.samochody" />
+          <EntitySet Name="wypozyczenia" EntityType="Self.wypozyczenia" />
+          <AssociationSet Name="adres_klienci" Association="Self.adres_klienci">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="adresy" EntitySet="adresy" />
+          </AssociationSet>
+          <AssociationSet Name="klienci_wypozyczenia" Association="Self.klienci_wypozyczenia">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+          <AssociationSet Name="pracownicy_wypozyczenia" Association="Self.pracownicy_wypozyczenia">
+            <End Role="pracownicy" EntitySet="pracownicy" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+          <AssociationSet Name="samochody_wypozyczenia" Association="Self.samochody_wypozyczenia">
+            <End Role="samochody" EntitySet="samochody" />
+            <End Role="wypozyczenia" EntitySet="wypozyczenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WypozyczalniaModelStoreContainer" CdmEntityContainer="WypozyczalniaEntities1">
+          <EntitySetMapping Name="adresy">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.adresy">
+              <MappingFragment StoreEntitySet="adresy">
+                <ScalarProperty Name="ID_adresu" ColumnName="ID_adresu" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="Nr_domu" ColumnName="Nr_domu" />
+                <ScalarProperty Name="Kod_pocztowy" ColumnName="Kod_pocztowy" />
+                <ScalarProperty Name="ID_klienta" ColumnName="ID_klienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="klienci">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.klienci">
+              <MappingFragment StoreEntitySet="klienci">
+                <ScalarProperty Name="ID_klienta" ColumnName="ID_klienta" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Data_urodzenia" ColumnName="Data_urodzenia" />
+                <ScalarProperty Name="Nr_komorkowy" ColumnName="Nr_komorkowy" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pracownicy">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.pracownicy">
+              <MappingFragment StoreEntitySet="pracownicy">
+                <ScalarProperty Name="ID_pracownika" ColumnName="ID_pracownika" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Data_przyjecia" ColumnName="Data_przyjecia" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="samochody">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.samochody">
+              <MappingFragment StoreEntitySet="samochody">
+                <ScalarProperty Name="ID_samochodu" ColumnName="ID_samochodu" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Czy_sprawny" ColumnName="Czy_sprawny" />
+                <ScalarProperty Name="Czy_dostepny" ColumnName="Czy_dostepny" />
+                <ScalarProperty Name="Nr_rejestracyjny" ColumnName="Nr_rejestracyjny" />
+                <ScalarProperty Name="Przebieg" ColumnName="Przebieg" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wypozyczenia">
+            <EntityTypeMapping TypeName="WypozyczalniaModel.wypozyczenia">
+              <MappingFragment StoreEntitySet="wypozyczenia">
+                <ScalarProperty Name="ID_wypozyczenia" ColumnName="ID_wypozyczenia" />
+                <ScalarProperty Name="Data_wypozyczenia" ColumnName="Data_wypozyczenia" />
+                <ScalarProperty Name="Data_zwrotu" ColumnName="Data_zwrotu" />
+                <ScalarProperty Name="ID_pracownika" ColumnName="ID_pracownika" />
+                <ScalarProperty Name="ID_klienta" ColumnName="ID_klienta" />
+                <ScalarProperty Name="ID_samochodu" ColumnName="ID_samochodu" />
+                <ScalarProperty Name="Stan_licznika_przed" ColumnName="Stan_licznika_przed" />
+                <ScalarProperty Name="Stan_licznika_po" ColumnName="Stan_licznika_po" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
