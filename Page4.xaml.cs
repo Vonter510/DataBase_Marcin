@@ -80,5 +80,10 @@ namespace DataBase_Marcin
             db.wypozyczenia.Add(wypozyczalniaObiekt);
             db.SaveChanges();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

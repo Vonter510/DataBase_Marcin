@@ -79,5 +79,10 @@ namespace DataBase_Marcin
 
             this.WidokKlient.ItemsSource = db.klienci.ToList();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

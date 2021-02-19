@@ -9,7 +9,17 @@
       Title="Page3">
 
     <Grid Background="#FF406FD3">
-        <DataGrid x:Name="WidokSamochodu" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772"/>
+        <DataGrid x:Name="WidokSamochodu" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Usuń" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="694,404,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="pOdswiez_Click"/>
         <TextBox x:Name="textMarka" HorizontalAlignment="Left" Height="23" Margin="179,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
         <Label Content="Marka:" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>

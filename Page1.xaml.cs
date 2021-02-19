@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace DataBase_Marcin
     /// </summary>
     public partial class Page1 : Page
     {
+        int id;
         public Page1()
         {
             InitializeComponent();
@@ -45,7 +47,6 @@ namespace DataBase_Marcin
                 Console.WriteLine(item.PESEL);
                 Console.WriteLine(item.Data_Zatrudnienia);
             }
-
             this.WidokPracownik.ItemsSource = dosc.ToList();
         }
 
@@ -72,32 +73,36 @@ namespace DataBase_Marcin
 
             this.WidokPracownik.ItemsSource = db.pracownicy.ToList();
         }
-        private int zmienneID = 0;
         private void pUsun_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult msbOdp = MessageBox.Show("Czy napewno chcesz usunąć","Usunięto", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
-            if (msbOdp == MessageBoxResult.Yes)
+            var r = from d in db.pracownicy
+                    where d.ID_pracownika == this.zmienneID
+                    select d;
+
+            pracownicy obj = r.SingleOrDefault();
+
+            if (obj != null)
             {
-                WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
-
-                var z = from d in db.pracownicy
-                        where d.ID_pracownika == this.zmienneID
-                        select d;
-
-                pracownicy obj = z.SingleOrDefault();
-
-                if (obj != null)
-                {
-                    db.pracownicy.Remove(obj);
-                    db.SaveChanges();
-                }
+                db.pracownicy.Remove(obj);
+                db.SaveChanges();
             }
         }
-
+        private int zmienneID = 0;
         private void WidokPracownik_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Console.WriteLine(this.WidokPracownik.SelectedItems);
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+            int id = (WidokPracownik.SelectedItem as pracownicy).ID_pracownika;
+            var usunPrac = db.pracownicy.Where(m => m.ID_pracownika == id).SingleOrDefault();
+            db.pracownicy.Remove(usunPrac);
+            db.SaveChanges();
+            WidokPracownik.ItemsSource = db.pracownicy.ToList();
         }
     }
 }

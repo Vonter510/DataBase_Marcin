@@ -9,7 +9,17 @@
       Title="Page2">
 
     <Grid Background="#FF406FD3">
-        <DataGrid x:Name="WidokKlient" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="WidokPracownik_SelectionChanged"/>
+        <DataGrid x:Name="WidokKlient" HorizontalAlignment="Left" Height="162" Margin="10,40,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="WidokPracownik_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Usuń" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox x:Name="textImie" HorizontalAlignment="Left" Height="23" Margin="179,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>
         <Label Content="Imie:" HorizontalAlignment="Left" Margin="20,207,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
         <TextBox x:Name="textNazwisko" HorizontalAlignment="Left" Height="23" Margin="179,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="16"/>

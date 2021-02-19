@@ -82,5 +82,10 @@ namespace DataBase_Marcin
             db.samochody.Add(samochodyObiekt);
             db.SaveChanges();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
