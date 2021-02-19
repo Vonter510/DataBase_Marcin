@@ -38,21 +38,12 @@ namespace DataBase_Marcin
                            PESEL = d.Pesel,
                            Data_Zatrudnienia = d.Data_przyjecia
                        };
-
-            foreach (var item in dosc)
-            {
-                Console.WriteLine(item.ID);
-                Console.WriteLine(item.Imie);
-                Console.WriteLine(item.Nazwisko);
-                Console.WriteLine(item.PESEL);
-                Console.WriteLine(item.Data_Zatrudnienia);
-            }
-            this.WidokPracownik.ItemsSource = dosc.ToList();
+            this.WidokPracownik.ItemsSource = db.pracownicy.ToList();
         }
 
         private void pDodaj_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pomyślnie dodano");
+            
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
             pracownicy pracownicyObiekt = new pracownicy()
@@ -64,6 +55,8 @@ namespace DataBase_Marcin
             };
             db.pracownicy.Add(pracownicyObiekt);
             db.SaveChanges();
+            MessageBox.Show("Pomyślnie dodano");
+            Odswiez();
 
         }
 
@@ -100,9 +93,18 @@ namespace DataBase_Marcin
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
             int id = (WidokPracownik.SelectedItem as pracownicy).ID_pracownika;
             var usunPrac = db.pracownicy.Where(m => m.ID_pracownika == id).SingleOrDefault();
+            var usunwyp = db.wypozyczenia.Where(s => s.ID_pracownika == id);
+            db.wypozyczenia.RemoveRange(usunwyp);
+            db.SaveChanges();
             db.pracownicy.Remove(usunPrac);
             db.SaveChanges();
             WidokPracownik.ItemsSource = db.pracownicy.ToList();
+        }
+        public void Odswiez()
+        {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+
+            this.WidokPracownik.ItemsSource = db.pracownicy.ToList();
         }
     }
 }

@@ -16,7 +16,7 @@
                         <DataTemplate>
                             <Button Content="Usuń" Click="Button_Click"/>
                         </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
@@ -28,8 +28,7 @@
         <Label Content="PESEL:" HorizontalAlignment="Left" Margin="20,274,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
         <Label Content="DataZatrudninia:" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Black"/>
         <Button x:Name="pDodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="47,376,0,0" VerticalAlignment="Top" Width="99" FontSize="16" FontFamily="Segoe UI Black" Height="38" Click="pDodaj_Click"/>
-        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="684,395,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="podswiez_Click"/>
+        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="649,357,0,0" VerticalAlignment="Top" Width="120" FontSize="14" FontFamily="Segoe UI Black" Height="65" Click="podswiez_Click"/>
         <DatePicker x:Name="tData" HorizontalAlignment="Left" Margin="179,317,0,0" VerticalAlignment="Top" Width="146" IsTodayHighlighted="True" FontStretch="Condensed"/>
-        <Button x:Name="pUsun"  Content="Usuń" HorizontalAlignment="Left" Margin="207,381,0,0" VerticalAlignment="Top" Width="99" FontSize="16" FontFamily="Segoe UI Black" Height="27" Click="pUsun_Click"/>
     </Grid>
 </Page>

@@ -178,10 +178,10 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Wypozyczalnia.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Wypozyczalnia_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Wypozyczalnia.mdf</DependentUpon>
     </Content>
   </ItemGroup>

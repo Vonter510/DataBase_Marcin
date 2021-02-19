@@ -52,4 +52,4 @@ namespace DataBase_Marcin
             Navigacja.Navigate(strona4);
         }
     }
-}
+}   

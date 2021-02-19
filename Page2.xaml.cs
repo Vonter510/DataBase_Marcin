@@ -49,7 +49,7 @@ namespace DataBase_Marcin
                 Console.WriteLine(item.Numer_komorkowy);
             }
 
-            this.WidokKlient.ItemsSource = dosc.ToList();
+            this.WidokKlient.ItemsSource = db.klienci.ToList();
         }
         private void WidokPracownik_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -57,7 +57,6 @@ namespace DataBase_Marcin
         }
         private void pDodaj_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pomyślnie dodano");
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
             klienci klientObiekt = new klienci()
@@ -70,7 +69,8 @@ namespace DataBase_Marcin
             };
             db.klienci.Add(klientObiekt);
             db.SaveChanges();
-
+            Odswiez();
+            MessageBox.Show("Pomyślnie dodano");
         }
 
         private void pOdswiez_Click(object sender, RoutedEventArgs e)
@@ -82,7 +82,24 @@ namespace DataBase_Marcin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+            int id = (WidokKlient.SelectedItem as klienci).ID_klienta;
+            var usunKli = db.klienci.Where(m => m.ID_klienta == id).SingleOrDefault();
+            var usunAdr = db.adresy.Where(s => s.ID_klienta == id);
+            var usunwyp = db.wypozyczenia.Where(s => s.ID_klienta == id);
+            db.wypozyczenia.RemoveRange(usunwyp);
+            db.SaveChanges();
+            db.adresy.RemoveRange(usunAdr);
+            db.SaveChanges();
+            db.klienci.Remove(usunKli);
+            db.SaveChanges();
+            WidokKlient.ItemsSource = db.klienci.ToList();
+        }
+        public void Odswiez()
+        {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
+            this.WidokKlient.ItemsSource = db.klienci.ToList();
         }
     }
 }

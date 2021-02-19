@@ -20,7 +20,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="694,404,0,0" VerticalAlignment="Top" Width="85" FontSize="14" FontFamily="Segoe UI Black" Height="27" Click="pOdswiez_Click"/>
+        <Button x:Name="pOdswiez"  Content="Odśwież" HorizontalAlignment="Left" Margin="662,371,0,0" VerticalAlignment="Top" Width="120" FontSize="14" FontFamily="Segoe UI Black" Height="65" Click="pOdswiez_Click"/>
         <Label Content="Data wypożyczenia:" HorizontalAlignment="Left" Margin="37,201,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI Black"/>
         <DatePicker x:Name="twypozyczenia" HorizontalAlignment="Left" Margin="205,208,0,0" VerticalAlignment="Top" Width="146" IsTodayHighlighted="True" FontStretch="Condensed"/>
         <Label Content="Data zwrotu:" HorizontalAlignment="Left" Margin="37,230,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Segoe UI Black"/>

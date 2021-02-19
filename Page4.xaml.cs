@@ -51,7 +51,7 @@ namespace DataBase_Marcin
                 Console.WriteLine(item.ID_samochodu);
             }
 
-            this.WidokWypozyczenia.ItemsSource = dosc.ToList();
+            this.WidokWypozyczenia.ItemsSource = db.wypozyczenia.ToList();
         }
 
         private void pOdswiez_Click(object sender, RoutedEventArgs e)
@@ -79,11 +79,24 @@ namespace DataBase_Marcin
             };
             db.wypozyczenia.Add(wypozyczalniaObiekt);
             db.SaveChanges();
+            MessageBox.Show("Pomyślnie dodano");
+            Odswiez();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+            int id = (WidokWypozyczenia.SelectedItem as wypozyczenia).ID_wypozyczenia;
+            var usunWyp = db.wypozyczenia.Where(m => m.ID_wypozyczenia == id).SingleOrDefault();
+            db.wypozyczenia.Remove(usunWyp);
+            db.SaveChanges();
+            WidokWypozyczenia.ItemsSource = db.wypozyczenia.ToList();
+        }
+        public void Odswiez()
+        {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
+            this.WidokWypozyczenia.ItemsSource = db.wypozyczenia.ToList();
         }
     }
 }

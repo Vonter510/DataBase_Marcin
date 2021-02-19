@@ -54,7 +54,7 @@ namespace DataBase_Marcin
                 Console.WriteLine(item.Vin);
             }
 
-            this.WidokSamochodu.ItemsSource = dosc.ToList();
+            this.WidokSamochodu.ItemsSource = db.samochody.ToList();
         }
 
         private void pOdswiez_Click(object sender, RoutedEventArgs e)
@@ -66,7 +66,6 @@ namespace DataBase_Marcin
 
         private void pDodaj_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pomyślnie dodano");
             WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
             samochody samochodyObiekt = new samochody()
@@ -81,11 +80,27 @@ namespace DataBase_Marcin
             };
             db.samochody.Add(samochodyObiekt);
             db.SaveChanges();
+            MessageBox.Show("Pomyślnie dodano");
+            Odswiez();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
+            int id = (WidokSamochodu.SelectedItem as samochody).ID_samochodu;
+            var usunSam = db.samochody.Where(m => m.ID_samochodu == id).SingleOrDefault();
+            var usunwyp = db.wypozyczenia.Where(s => s.ID_samochodu == id);
+            db.wypozyczenia.RemoveRange(usunwyp);
+            db.SaveChanges();
+            db.samochody.Remove(usunSam);
+            db.SaveChanges();
+            WidokSamochodu.ItemsSource = db.samochody.ToList();
+        }
+        public void Odswiez()
+        {
+            WypozyczalniaEntities1 db = new WypozyczalniaEntities1();
 
+            this.WidokSamochodu.ItemsSource = db.samochody.ToList();
         }
     }
 }
